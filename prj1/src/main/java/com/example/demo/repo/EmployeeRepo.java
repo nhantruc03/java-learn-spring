@@ -1,7 +1,7 @@
-package tech.getarrays.employeemanager.repo;
+package com.example.demo.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import tech.getarrays.employeemanager.model.Employee;
+import com.example.demo.model.Employee;
 
 import java.util.Optional;
 
