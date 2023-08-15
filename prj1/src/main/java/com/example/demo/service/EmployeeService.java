@@ -6,10 +6,13 @@ import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.model.Employee;
 import com.example.demo.repo.EmployeeRepo;
 
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class EmployeeService {
     private final EmployeeRepo employeeRepo;
 
