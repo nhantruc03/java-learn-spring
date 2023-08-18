@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  database_service: 
+    image: mysql
+    container_name: db
+    ports:
+      - 3310:3306
+    volumes:
+      - /database/data:/var/lib/mysql 
+      - /database/config:/etc/mysql/conf.d
+    environment:
+      - MYSQL_USER=nhanpq 
+      - MYSQL_PASSWORD=abc123 
+      - MYSQL_ROOT_PASSWORD=abc123 
+      - MYSQL_DATABASE=StudenManagement 
+    networks:
+      - mynetwork
+  backend_service:
+    image: nhanpq/prj3
+    container_name: be
+    ports:
+      - 8085:8083
+    volumes:
+      - ./:/app
+    networks:
+      - mynetwork
+    
+networks:
+  mynetwork:
+    name: mynetwork-name

@@ -15,7 +15,7 @@ public class AppController {
     @GetMapping("")
     public ResponseEntity<JsonObject> test(){
         JsonObject res = new JsonObject();
-        res.addProperty("test", "test");
+        res.addProperty("test", "test after change 2");
         return new ResponseEntity<JsonObject>(res,HttpStatus.OK);
     }
     

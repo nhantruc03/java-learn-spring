@@ -1,5 +1,23 @@
 -- build image
-docker buid --tag {image} .
+docker build --tag {image} .
 
 -- create new image with new tag
 docker tag {image:oldtag} {image:newtag}
+
+--Run 
+docker run -dp 8085:8083 --name prj3 -v "$(pwd):/app" --network network nhanpq/prj3:latest
+
+
+
+docker run --rm -d 
+-v /database/data:/var/lib/mysql 
+-v /database/config:/etc/mysql/conf.d 
+--name db 
+-p 3310:3306 
+-e MYSQL_USER=nhanpq 
+-e MYSQL_PASSWORD=abc123 
+-e MYSQL_ROOT_PASSWORD=abc123 
+-e MYSQL_DATABASE=StudenManagement 
+--network network mysql
+
+
