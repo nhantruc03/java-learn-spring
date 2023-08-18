@@ -1,0 +1,5 @@
+-- build image
+docker buid --tag {image} .
+
+-- create new image with new tag
+docker tag {image:oldtag} {image:newtag}
