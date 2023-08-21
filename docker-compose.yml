@@ -13,7 +13,7 @@ services:
       - MYSQL_USER=nhanpq 
       - MYSQL_PASSWORD=abc123 
       - MYSQL_ROOT_PASSWORD=abc123 
-      - MYSQL_DATABASE=Student 
+      - MYSQL_DATABASE=prj6
     networks:
       - mynetwork
     
