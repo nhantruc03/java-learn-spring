@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -14,11 +15,12 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
+	private final JwtSerivce jwtSerivce;
+
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,@NonNull HttpServletResponse response,@NonNull FilterChain filterChain)
             throws ServletException, IOException {
 
-                private final JwtSerivce jwtSerivce;
 
                 final String authHeader = request.getHeader("Authorization");
                 final String jwtToken;
