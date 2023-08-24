@@ -24,23 +24,30 @@ public class AccountController {
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
     @PostMapping("/new")
-    public ResponseEntity<AccountDTO> create(@RequestBody AccountDTO accountDTO){
+    public ResponseEntity<AccountDTO> create(@RequestBody AccountDTO accountDTO) {
 
-        StatisticDTO statisticDTO = StatisticDTO.builder().message(String.format("Account %s", accountDTO.getEmail())).createdDate(new Date()).build();
-        
+        StatisticDTO statisticDTO = StatisticDTO.builder().message(String.format("Account %s", accountDTO.getEmail()))
+                .createdDate(new Date()).build();
 
         MessageDTO messageDTO = MessageDTO.builder()
-        .to(accountDTO.getEmail())    
-        .toName(accountDTO.getName())
-        .subject("Subject of the Message!")
-        .content("Content of the message!!")
-        .build();
+                .to(accountDTO.getEmail())
+                .toName(accountDTO.getName())
+                .subject("Subject of the Message!")
+                .content("Content of the message!!")
+                .build();
 
-        kafkaTemplate.send(Topic.NOTIFICATION.name(), messageDTO);
+        kafkaTemplate.send(Topic.NOTIFICATION.name(), messageDTO).whenComplete((result, ex) -> {
+            if (ex == null) {
+                System.out.println("Sent message=[" + accountDTO.getEmail() +
+                        "] with offset=[" + result.getRecordMetadata().offset() + "]");
+            } else {
+                System.out.println("Unable to send message=[" +
+                        accountDTO.getEmail() + "] due to : " + ex.getMessage());
+            }
+        });
         kafkaTemplate.send(Topic.STATISTIC.name(), statisticDTO);
-
 
         return ResponseEntity.ok(accountDTO);
     }
-    
+
 }
