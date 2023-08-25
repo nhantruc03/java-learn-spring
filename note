@@ -23,7 +23,7 @@ spring.datasource.url=jdbc:mysql://localhost:3310/login
 spring.datasource.username=nhanpq
 spring.datasource.password=abc123
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.jpa.show-sql: true
+spring.jpa.show-sql=true
 
 # ddl-auto: create, update, create-drop, validate và none
 # create: Trước tiên Hibernate sẽ drop các bảng đang có và sau đó tạo ra các bảng mới.

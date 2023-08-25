@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 import org.slf4j.Logger;
